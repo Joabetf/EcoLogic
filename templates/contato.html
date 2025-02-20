@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contato - Ecologic</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Contato</h1>
+        <nav>
+            <a href="{{ url_for('index') }}">Início</a>
+            <a href="{{ url_for('sensores_page') }}">Sensores</a>
+            <a href="{{ url_for('sobre') }}">Sobre</a>
+            <a href="{{ url_for('contato') }}">Contato</a>
+        </nav>
+    </header>
+    <main>
+        <p>Entre em contato pelo e-mail: <a href="mailto:suporte@ecologic.com">suporte@ecologic.com</a></p>
+    </main>
+</body>
+</html>

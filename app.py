@@ -13,9 +13,20 @@ def get_db_connection():
 def index():
     return render_template("index.html")
 
-@app.route("/api/sensores")
-def sensores():
-    # Simulação de sensores
+@app.route("/sobre")
+def sobre():
+    return render_template("sobre.html")
+
+@app.route("/sensores")
+def sensores_page():  # ✅ Renomeado para evitar conflito
+    return render_template("sensores.html")
+
+@app.route("/contato")
+def contato():
+    return render_template("contato.html")
+
+@app.route("/api/sensores")  # ✅ Mantém a rota para os dados
+def sensores_api():
     dados = {
         "luminosidade": round(random.uniform(100, 1000), 2),
         "temperatura": round(random.uniform(18, 30), 2),

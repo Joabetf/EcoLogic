@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sensores - Ecologic</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Monitoramento de Sensores</h1>
+        <nav>
+            <a href="{{ url_for('index') }}">Início</a>
+            <a href="{{ url_for('sensores_page') }}">Sensores</a>
+            <a href="{{ url_for('sobre') }}">Sobre</a>
+            <a href="{{ url_for('contato') }}">Contato</a>
+        </nav>
+    </header>
+    <main>
+        <div class="container">
+            <p>Luminosidade: <span id="luminosidade">--</span> lx</p>
+            <p>Temperatura: <span id="temperatura">--</span> °C</p>
+            <p>Corrente: <span id="corrente">--</span> A</p>
+        </div>
+    </main>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

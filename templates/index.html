@@ -3,16 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ecologic</title>
+    <title>Ecologic - Monitoramento Inteligente</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <h1>Ecologic - Monitoramento</h1>
-    <div class="container">
-        <p>Luminosidade: <span id="luminosidade">--</span> lx</p>
-        <p>Temperatura: <span id="temperatura">--</span> °C</p>
-        <p>Corrente: <span id="corrente">--</span> A</p>
-    </div>
-    <script src="{{ url_for('static', filename='script.js') }}"></script>
+    <header>
+        <h1>🌍 Ecologic - Monitoramento Inteligente</h1>
+        <nav>
+            <a href="{{ url_for('index') }}">Início</a>
+            <a href="{{ url_for('sensores_page') }}">Sensores</a>
+            <a href="{{ url_for('sobre') }}">Sobre</a>
+            <a href="{{ url_for('contato') }}">Contato</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h2>Monitoramento em Tempo Real 🌡️🔋💡</h2>
+        <p>Obtenha dados precisos de temperatura, luminosidade e corrente elétrica para otimizar seu ambiente.</p>
+        <a href="{{ url_for('sensores_page') }}" class="btn">Ver Sensores</a>
+    </section>
+
+    <section class="benefits">
+        <h2>Por que usar o Ecologic?</h2>
+        <div class="benefit-grid">
+            <div class="benefit-item">
+                <h3>📊 Dados em Tempo Real</h3>
+                <p>Acompanhe as medições em tempo real e tome decisões inteligentes.</p>
+            </div>
+            <div class="benefit-item">
+                <h3>🌱 Sustentabilidade</h3>
+                <p>Reduza desperdícios e torne seu ambiente mais eficiente.</p>
+            </div>
+            <div class="benefit-item">
+                <h3>🔧 Fácil Instalação</h3>
+                <p>Nosso sistema é simples e pode ser integrado rapidamente.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2025 Ecologic. Todos os direitos reservados.</p>
+    </footer>
 </body>
 </html>
