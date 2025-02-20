@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ecologic</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Ecologic - Monitoramento</h1>
+    <div class="container">
+        <p>Luminosidade: <span id="luminosidade">--</span> lx</p>
+        <p>Temperatura: <span id="temperatura">--</span> °C</p>
+        <p>Corrente: <span id="corrente">--</span> A</p>
+    </div>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
