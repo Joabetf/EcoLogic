@@ -1,24 +1,116 @@
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sobre - Ecologic</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Sobre - ECOlogic</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .header {
+            background: #2c7a2c;
+            color: white;
+            text-align: center;
+            padding: 40px;
+            font-size: 24px;
+        }
+        nav {
+            background: #216021;
+            padding: 15px;
+            text-align: center;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            margin: 0 15px;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+        nav a:hover {
+            color: #a8e6a8;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            padding: 20px;
+        }
+        .section {
+            background: white;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        .team {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+        .team-member {
+            text-align: center;
+            margin: 10px;
+        }
+        .team-member img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+        }
+        footer {
+            background: #2c7a2c;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            margin-top: 20px;
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <h1>Sobre o Ecologic</h1>
-        <nav>
-            <a href="{{ url_for('index') }}">Início</a>
-            <a href="{{ url_for('sensores_page') }}">Sensores</a>
-            <a href="{{ url_for('sobre') }}">Sobre</a>
-            <a href="{{ url_for('contato') }}">Contato</a>
-        </nav>
-    </header>
-    <main>
-        <p>O Ecologic é um sistema de monitoramento ambiental desenvolvido para facilitar o acompanhamento de sensores em tempo real.</p>
-    </main>
+    <div class="header">ECOlogic - Sobre Nós</div>
+
+    <nav>
+        <a href="{{ url_for('index') }}">Início</a>
+        <a href="{{ url_for('sensores_page') }}">Sensores</a>
+        <a href="{{ url_for('sobre') }}">Sobre</a>
+        <a href="{{ url_for('contato') }}">Contato</a>
+    </nav>
+
+    <div class="container">
+        <div class="section">
+            <h2>Quem Somos</h2>
+            <p>O ECOlogic é um projeto voltado para o monitoramento e automação de dispositivos de forma inteligente e sustentável.</p>
+        </div>
+        <div class="section">
+            <h2>Nossa Missão</h2>
+            <p>Facilitar o controle de dispositivos eletrônicos através de uma plataforma integrada e acessível.</p>
+        </div>
+        <div class="section">
+            <h2>Equipe</h2>
+            <div class="team">
+                <div class="team-member">
+                    <img src="https://via.placeholder.com/120" alt="Membro 1">
+                    <p>João Silva</p>
+                </div>
+                <div class="team-member">
+                    <img src="https://via.placeholder.com/120" alt="Membro 2">
+                    <p>Maria Oliveira</p>
+                </div>
+                <div class="team-member">
+                    <img src="https://via.placeholder.com/120" alt="Membro 3">
+                    <p>Carlos Souza</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        &copy; 2025 ECOlogic - Todos os direitos reservados.
+    </footer>
 </body>
 </html>
-

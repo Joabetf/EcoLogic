@@ -1,4 +1,4 @@
-from flask import Flask, render_template, jsonify
+from flask import Flask, render_template, jsonify, request
 import sqlite3
 import random
 
@@ -18,8 +18,13 @@ def sobre():
     return render_template("sobre.html")
 
 @app.route("/sensores")
-def sensores_page():  # ✅ Renomeado para evitar conflito
-    return render_template("sensores.html")
+def sensores_page():
+    conn = get_db_connection()
+    sensores = conn.execute("SELECT * FROM sensores").fetchall()
+    dispositivos_ir = conn.execute("SELECT * FROM dispositivos_ir").fetchall()
+    conn.close()
+    return render_template("sensores.html", sensores=sensores, dispositivos_ir=dispositivos_ir)
+
 
 @app.route("/contato")
 def contato():
@@ -42,6 +47,43 @@ def sensores_api():
     conn.close()
 
     return jsonify(dados)
+
+@app.route('/api/dispositivos_ir', methods=['GET'])
+def obter_dispositivos_ir():
+    dispositivos = database.buscar_estado_ir()
+    return jsonify(dispositivos)
+
+@app.route('/api/dispositivos_ir/atualizar', methods=['POST'])
+def atualizar_dispositivo_ir():
+    data = request.json
+    nome = data.get("nome")
+    estado = data.get("estado")
+    temperatura = data.get("temperatura")
+
+    database.atualizar_estado_ir(nome, estado, temperatura)
+    return jsonify({"message": "Estado atualizado com sucesso!"})
+
+@app.route("/atualizar_estado", methods=["POST"])
+def atualizar_estado():
+    data = request.json
+    dispositivo_id = data.get("id")
+    novo_estado = data.get("estado")
+    conn = get_db_connection()
+    conn.execute("UPDATE dispositivos_ir SET estado = ? WHERE id = ?", (novo_estado, dispositivo_id))
+    conn.commit()
+    conn.close()
+    return jsonify({"success": True, "estado": novo_estado})
+
+@app.route("/atualizar_temperatura", methods=["POST"])
+def atualizar_temperatura():
+    data = request.json
+    dispositivo_id = data.get("id")
+    nova_temp = data.get("temperatura")
+    conn = get_db_connection()
+    conn.execute("UPDATE dispositivos_ir SET temperatura = ? WHERE id = ?", (nova_temp, dispositivo_id))
+    conn.commit()
+    conn.close()
+    return jsonify({"success": True, "temperatura": nova_temp})
 
 if __name__ == "__main__":
     app.run(debug=True)

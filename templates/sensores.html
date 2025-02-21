@@ -22,7 +22,42 @@
             <p>Temperatura: <span id="temperatura">--</span> °C</p>
             <p>Corrente: <span id="corrente">--</span> A</p>
         </div>
+        <div class="container">
+            <h2>Dispositivos IR</h2>
+            {% for dispositivo in dispositivos_ir %}
+                <div class="dispositivo">
+                    <p>{{ dispositivo['nome'] }} ({{ dispositivo['tipo'] }})</p>
+                    <button onclick="alterarEstado({{ dispositivo['id'] }}, '{{ dispositivo['estado'] }}')">{{ dispositivo['estado'] }}</button>
+                    {% if dispositivo['tipo'] == 'ar_condicionado' %}
+                        <input type="number" id="temp-{{ dispositivo['id'] }}" value="{{ dispositivo['temperatura'] }}" min="16" max="30">
+                        <button onclick="alterarTemperatura({{ dispositivo['id'] }})">Definir Temperatura</button>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        </div>
     </main>
-    <script src="{{ url_for('static', filename='script.js') }}"></script>
+    <script>
+        function alterarEstado(id, estadoAtual) {
+            let novoEstado = estadoAtual === "ligado" ? "desligado" : "ligado";
+            fetch("/atualizar_estado", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ id: id, estado: novoEstado })
+            })
+            .then(response => response.json())
+            .then(data => location.reload());
+        }
+
+        function alterarTemperatura(id) {
+            let novaTemp = document.getElementById(`temp-${id}`).value;
+            fetch("/atualizar_temperatura", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ id: id, temperatura: novaTemp })
+            })
+            .then(response => response.json())
+            .then(data => location.reload());
+        }
+    </script>
 </body>
 </html>
