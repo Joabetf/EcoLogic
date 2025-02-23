@@ -13,6 +13,8 @@
             background-color: #f4f4f4;
         }
         .header {
+            display: flex;
+            justify-content: space-between;
             background: #2c7a2c;
             color: white;
             text-align: center;
@@ -72,7 +74,7 @@
     </style>
 </head>
 <body>
-    <div class="header">ECOlogic - Sobre Nós</div>
+    <div class="header">Ecologic - Sobre Nós</div>
 
     <nav>
         <a href="{{ url_for('index') }}">Início</a>
@@ -94,16 +96,20 @@
             <h2>Equipe</h2>
             <div class="team">
                 <div class="team-member">
-                    <img src="https://via.placeholder.com/120" alt="Membro 1">
-                    <p>João Silva</p>
+                    <img src="{{ url_for('static', filename='imagens/joabe.JPG') }}" alt="Membro 1">
+                    <p>Eduardo Masquerano</p>
                 </div>
                 <div class="team-member">
-                    <img src="https://via.placeholder.com/120" alt="Membro 2">
-                    <p>Maria Oliveira</p>
+                    <img src="{{ url_for('static', filename='imagens/joabe.JPG') }}" alt="Membro 2">
+                    <p>Joabe Torres</p>
                 </div>
                 <div class="team-member">
-                    <img src="https://via.placeholder.com/120" alt="Membro 3">
-                    <p>Carlos Souza</p>
+                    <img src="{{ url_for('static', filename='imagens/joabe.JPG') }}" alt="Membro 3">
+                    <p>Juan Franthesco</p>
+                </div>
+                <div class="team-member">
+                    <img src="{{ url_for('static', filename='imagens/joabe.JPG') }}" alt="Membro 4">
+                    <p>Yago Eron</p>
                 </div>
             </div>
         </div>
