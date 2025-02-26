@@ -9,4 +9,4 @@ function atualizarSensores() {
         .catch(error => console.error("Erro ao buscar os sensores:", error));
 }
 
-setInterval(atualizarSensores, 2000);  // Atualiza a cada 2 segundos
+setInterval(atualizarSensores, 1000);  // Atualiza a cada 2 segundos

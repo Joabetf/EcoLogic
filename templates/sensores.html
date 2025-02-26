@@ -6,6 +6,23 @@
     <title>Sensores - Ecologic</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
+<style>
+    body {
+        font-family: 'Poppins', sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f4;
+    }
+    footer {
+        background: #2c7a2c;
+        color: white;
+        text-align: center;
+        padding: 10px;
+        margin-top: 20px;
+    }
+    
+</style>
+
 <body>
     <header>
         <h1>Monitoramento de Sensores</h1>
@@ -59,5 +76,9 @@
             .then(data => location.reload());
         }
     </script>
+    <footer>
+        <p>© 2025 Ecologic. Todos os direitos reservados.</p>
+    </footer>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
 </html>
