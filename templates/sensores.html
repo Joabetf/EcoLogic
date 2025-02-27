@@ -7,20 +7,30 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <style>
-    body {
-        font-family: 'Poppins', sans-serif;
+    /* Garantir que a página ocupe toda a altura da tela */
+    html, body {
+        height: 100%;
         margin: 0;
         padding: 0;
+        display: flex;
+        flex-direction: column;
+        font-family: 'Poppins', sans-serif;
         background-color: #f4f4f4;
     }
+
+    /* O conteúdo principal cresce para empurrar o footer */
+    main {
+        flex: 1;
+    }
+
+    /* Footer fixo no rodapé */
     footer {
         background: #2c7a2c;
         color: white;
         text-align: center;
         padding: 10px;
-        margin-top: 20px;
+        margin-top: auto;
     }
-    
 </style>
 
 <body>

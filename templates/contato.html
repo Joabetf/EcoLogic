@@ -5,6 +5,48 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contato - Ecologic</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        /* Define altura total da página */
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            font-family: 'Poppins', sans-serif;
+            background-color: #f4f4f4;
+        }
+
+        /* Centraliza o conteúdo principal */
+        main {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+        }
+
+        /* Estiliza o link do e-mail */
+        main a {
+            color: #2c7a2c;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        main a:hover {
+            text-decoration: underline;
+        }
+
+        /* Footer fixo no rodapé */
+        footer {
+            background: #2c7a2c;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            margin-top: auto;
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -17,7 +59,16 @@
         </nav>
     </header>
     <main>
-        <p>Entre em contato pelo e-mail: <a href="mailto:suporte@ecologic.com">suporte@ecologic.com</a></p>
+        <div>
+            <h2>Fale conosco</h2>
+            <p>Tem alguma dúvida ou precisa de suporte?</p>
+            <p>Entre em contato pelo e-mail: <br>
+                <a href="mailto:suporte@ecologic.com">suporte@ecologic.com</a>
+            </p>
+        </div>
     </main>
+    <footer>
+        <p>© 2025 Ecologic. Todos os direitos reservados.</p>
+    </footer>
 </body>
 </html>
