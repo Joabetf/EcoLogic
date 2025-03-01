@@ -1,103 +1,90 @@
-/* Estilos gerais */
+/* Estilos globais (comuns a todas as páginas) */
 body {
     font-family: 'Poppins', sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f4f4f4;
+    background-color: #f9f9f9;
     color: #333;
+    line-height: 1.6;
 }
 
-header {
-    background-color: #4CAF50;
-    color: white;
-    padding: 1rem;
-    text-align: center;
-}
-
-header h1 {
-    margin: 0;
-    font-size: 2rem;
-}
-
-nav {
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
-    margin-top: 1rem;
-}
-
-nav a {
-    color: white;
-    text-decoration: none;
-    font-weight: 600;
-}
-
-nav a:hover {
-    text-decoration: underline;
-}
-
-/* Hero section */
-.hero {
-    text-align: center;
-    padding: 2rem;
-    background-color: #e8f5e9;
-}
-
-.hero h2 {
-    font-size: 2rem;
-    margin-bottom: 1rem;
-}
-
-.hero p {
-    font-size: 1.2rem;
-    margin-bottom: 1.5rem;
-}
-
-.hero .btn {
-    background-color: #4CAF50;
-    color: white;
-    padding: 0.8rem 1.5rem;
-    text-decoration: none;
-    border-radius: 5px;
-    font-weight: 600;
-}
-
-.hero .btn:hover {
-    background-color: #45a049;
-}
-
-/* Benefits section */
-.benefits {
-    padding: 2rem;
-    text-align: center;
-}
-
-.benefits h2 {
-    font-size: 1.8rem;
-    margin-bottom: 1.5rem;
-}
-
-.benefit-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 1.5rem;
-}
-
-.benefit-item {
-    background-color: white;
-    padding: 1.5rem;
-    border-radius: 5px;
+/* Nav-bar */
+.navbar {
+    background-color: #4CAF50; /* Verde sólido */
+    padding: 1rem 2rem;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-.benefit-item h3 {
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
+.navbar-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
-.benefit-item p {
-    font-size: 1rem;
-    color: #666;
+.logo a {
+    color: white;
+    font-size: 1.5rem;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.nav-menu {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.nav-menu a {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.nav-menu a:hover {
+    color: #e0e0e0;
+}
+
+/* Menu mobile */
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.menu-toggle .bar {
+    width: 25px;
+    height: 3px;
+    background-color: white;
+    margin: 4px 0;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .nav-menu {
+        display: none;
+        flex-direction: column;
+        background-color: #4CAF50;
+        position: absolute;
+        top: 60px;
+        right: 0;
+        width: 100%;
+        text-align: center;
+    }
+
+    .nav-menu.active {
+        display: flex;
+    }
+
+    .menu-toggle {
+        display: flex;
+    }
 }
 
 /* Footer */
@@ -108,6 +95,424 @@ footer {
     color: white;
     margin-top: 2rem;
 }
+
+/* Estilos específicos para a página index.html */
+body.index .hero {
+    text-align: center;
+    padding: 6rem 2rem 2rem;
+    background-color: #e8f5e9;
+}
+
+body.index .hero h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: #2E7D32;
+}
+
+body.index .hero p {
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+    color: #333;
+}
+
+body.index .hero .btn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 0.8rem 1.5rem;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+}
+
+body.index .hero .btn:hover {
+    background-color: #45a049;
+}
+
+body.index .benefits {
+    padding: 2rem;
+    text-align: center;
+    background-color: white;
+}
+
+body.index .benefits h2 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    color: #2E7D32;
+}
+
+body.index .benefit-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+body.index .benefit-item {
+    background-color: #f9f9f9;
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+body.index .benefit-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+body.index .benefit-item h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: #2E7D32;
+}
+
+body.index .benefit-item p {
+    font-size: 1rem;
+    color: #666;
+}
+
+/* Estilos específicos para a página sensores.html */
+body.sensores .sensors {
+    padding: 6rem 2rem 2rem;
+    text-align: center;
+}
+
+body.sensores .sensors h1 {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    color: #2E7D32;
+}
+
+body.sensores .sensor-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+body.sensores .sensor-card {
+    background-color: white;
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+body.sensores .sensor-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+body.sensores .sensor-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: #2E7D32;
+}
+
+body.sensores .sensor-card p {
+    font-size: 1.2rem;
+    color: #666;
+}
+
+body.sensores .devices {
+    padding: 2rem;
+    text-align: center;
+}
+
+body.sensores .devices h2 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    color: #2E7D32;
+}
+
+body.sensores .device-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+body.sensores .device-card {
+    background-color: white;
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+body.sensores .device-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+body.sensores .device-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: #2E7D32;
+}
+
+body.sensores .btn-toggle, body.sensores .btn-set {
+    background-color: #4CAF50;
+    color: white;
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 5px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+body.sensores .btn-toggle:hover, body.sensores .btn-set:hover {
+    background-color: #45a049;
+}
+
+body.sensores .temperature-control {
+    margin-top: 1rem;
+}
+
+body.sensores .temperature-control input {
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-right: 0.5rem;
+}
+/* Estilos específicos para a página sobre.html */
+body.sobre .hero {
+    text-align: center;
+    padding: 6rem 2rem 2rem;
+    background-color: #e8f5e9;
+}
+
+body.sobre .hero h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: #2E7D32;
+}
+
+body.sobre .hero p {
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+    color: #333;
+}
+
+body.sobre .container {
+    width: 80%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 0;
+}
+
+body.sobre .section {
+    background-color: white;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+body.sobre .section h2 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    color: #2E7D32;
+}
+
+body.sobre .section p {
+    font-size: 1rem;
+    color: #666;
+    line-height: 1.6;
+}
+
+body.sobre .team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+}
+
+body.sobre .team-member {
+    text-align: center;
+    background-color: #f9f9f9;
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+body.sobre .team-member:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+body.sobre .team-member img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    margin-bottom: 1rem;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+body.sobre .team-member h3 {
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+    color: #2E7D32;
+}
+
+body.sobre .team-member p {
+    font-size: 0.9rem;
+    color: #666;
+}
+/* Estilos específicos para a página contato.html */
+body.contato .hero {
+    text-align: center;
+    padding: 6rem 2rem 2rem;
+    background-color: #e8f5e9;
+}
+
+body.contato .hero h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: #2E7D32;
+}
+
+body.contato .hero p {
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+    color: #333;
+}
+
+body.contato .container {
+    width: 80%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+}
+
+body.contato .contact-info {
+    flex: 1;
+    min-width: 300px;
+}
+
+body.contato .info-card {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin-bottom: 2rem;
+}
+
+body.contato .info-card h2 {
+    font-size: 1.75rem;
+    margin-bottom: 1.5rem;
+    color: #2E7D32;
+}
+
+body.contato .info-card p {
+    font-size: 1rem;
+    color: #666;
+    margin-bottom: 1rem;
+}
+
+body.contato .info-card a {
+    color: #4CAF50;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+body.contato .info-card a:hover {
+    text-decoration: underline;
+}
+
+body.contato .social-links {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+body.contato .social-links h2 {
+    font-size: 1.75rem;
+    margin-bottom: 1.5rem;
+    color: #2E7D32;
+}
+
+body.contato .social-link {
+    display: block;
+    color: #333;
+    text-decoration: none;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    transition: color 0.3s ease;
+}
+
+body.contato .social-link:hover {
+    color: #4CAF50;
+}
+
+body.contato .social-link i {
+    margin-right: 0.5rem;
+}
+
+body.contato .contact-form {
+    flex: 2;
+    min-width: 300px;
+    background-color: white;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+body.contato .contact-form h2 {
+    font-size: 1.75rem;
+    margin-bottom: 1.5rem;
+    color: #2E7D32;
+}
+
+body.contato .form-group {
+    margin-bottom: 1.5rem;
+}
+
+body.contato .form-group label {
+    display: block;
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+    color: #333;
+}
+
+body.contato .form-group input,
+body.contato .form-group textarea {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+body.contato .form-group textarea {
+    resize: vertical;
+}
+
+body.contato .btn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+body.contato .btn:hover {
+    background-color: #45a049;
+}
+
 /* Carrossel */
 .carousel {
     position: relative;
@@ -128,10 +533,12 @@ footer {
     min-width: 100%;
     box-sizing: border-box;
     display: none;
+    transition: opacity 0.5s ease-in-out;
 }
 
 .carousel-item.active {
     display: block;
+    opacity: 1;
 }
 
 .carousel-item img {
@@ -139,6 +546,7 @@ footer {
     display: block;
 }
 
+/* Botões de navegação */
 .carousel-control {
     position: absolute;
     top: 50%;
@@ -150,6 +558,7 @@ footer {
     cursor: pointer;
     font-size: 1.5rem;
     border-radius: 50%;
+    transition: background-color 0.3s ease;
 }
 
 .carousel-control.prev {
@@ -162,4 +571,27 @@ footer {
 
 .carousel-control:hover {
     background-color: rgba(0, 0, 0, 0.8);
+}
+
+/* Indicadores de slides */
+.carousel-indicators {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 5px;
+}
+
+.carousel-indicators .indicator {
+    width: 10px;
+    height: 10px;
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.carousel-indicators .indicator.active {
+    background-color: rgba(255, 255, 255, 1);
 }

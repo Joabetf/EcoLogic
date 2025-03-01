@@ -1,74 +1,54 @@
-<!DOCTYPE html>
-<html lang="pt">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contato - Ecologic</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-    <style>
-        /* Define altura total da página */
-        html, body {
-            height: 100%;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            flex-direction: column;
-            font-family: 'Poppins', sans-serif;
-            background-color: #f4f4f4;
-        }
+{% extends "base.html" %}
 
-        /* Centraliza o conteúdo principal */
-        main {
-            flex: 1;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 20px;
-        }
+{% block title %}Contato - ECOlogic{% endblock %}
 
-        /* Estiliza o link do e-mail */
-        main a {
-            color: #2c7a2c;
-            font-weight: bold;
-            text-decoration: none;
-        }
+{% block content %}
+    <body class="contato">
+        <!-- Seção Hero -->
+        <section class="hero">
+            <h1>Contato</h1>
+            <p>Estamos aqui para ajudar! Entre em contato conosco.</p>
+        </section>
 
-        main a:hover {
-            text-decoration: underline;
-        }
+        <!-- Conteúdo principal -->
+        <div class="container">
+            <!-- Informações de contato -->
+            <div class="contact-info">
+                <div class="info-card">
+                    <h2>Informações de Contato</h2>
+                    <p><strong>Email:</strong> <a href="mailto:suporte@ecologic.com">suporte@ecologic.com</a></p>
+                    <p><strong>Telefone:</strong> +55 (11) 1234-5678</p>
+                    <p><strong>Endereço:</strong> Rua Ecologic, 123 - São Paulo, SP</p>
+                </div>
+                <div class="social-links">
+                    <h2>Redes Sociais</h2>
+                    <a href="#" class="social-link"><i class="fa-brands fa-facebook"></i> Facebook</a>
+                    <a href="#" class="social-link"><i class="fa-brands fa-twitter"></i> X (Twitter)</a>
+                    <a href="#" class="social-link"><i class="fa-brands fa-instagram"></i> Instagram</a>
+                    <a href="#" class="social-link"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
+                    <a href="#" class="social-link"><i class="fa-brands fa-github"></i> GitHub</a>
+                </div>
+            </div>
 
-        /* Footer fixo no rodapé */
-        footer {
-            background: #2c7a2c;
-            color: white;
-            text-align: center;
-            padding: 10px;
-            margin-top: auto;
-        }
-    </style>
-</head>
-<body>
-    <header>
-        <h1>Contato</h1>
-        <nav>
-            <a href="{{ url_for('index') }}">Início</a>
-            <a href="{{ url_for('sensores_page') }}">Sensores</a>
-            <a href="{{ url_for('sobre') }}">Sobre</a>
-            <a href="{{ url_for('contato') }}">Contato</a>
-        </nav>
-    </header>
-    <main>
-        <div>
-            <h2>Fale conosco</h2>
-            <p>Tem alguma dúvida ou precisa de suporte?</p>
-            <p>Entre em contato pelo e-mail: <br>
-                <a href="mailto:suporte@ecologic.com">suporte@ecologic.com</a>
-            </p>
+            <!-- Formulário de contato -->
+            <div class="contact-form">
+                <h2>Envie uma mensagem</h2>
+                <form action="/enviar_mensagem" method="POST">
+                    <div class="form-group">
+                        <label for="nome">Nome:</label>
+                        <input type="text" id="nome" name="nome" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="mensagem">Mensagem:</label>
+                        <textarea id="mensagem" name="mensagem" rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="btn">Enviar</button>
+                </form>
+            </div>
         </div>
-    </main>
-    <footer>
-        <p>© 2025 Ecologic. Todos os direitos reservados.</p>
-    </footer>
-</body>
-</html>
+    </body>
+{% endblock %}

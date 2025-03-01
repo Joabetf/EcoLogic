@@ -1,21 +1,32 @@
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Ecologic - Monitoramento Inteligente{% endblock %}</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-    <header>
-        <h1>🌍 Ecologic - Monitoramento Inteligente</h1>
-        <nav>
-            <a href="{{ url_for('index') }}">Início</a>
-            <a href="{{ url_for('sensores_page') }}">Sensores</a>
-            <a href="{{ url_for('sobre') }}">Sobre</a>
-            <a href="{{ url_for('contato') }}">Contato</a>
-        </nav>
+    <!-- Nav-bar -->
+    <header class="navbar">
+        <div class="navbar-container">
+            <div class="logo">
+                <a href="{{ url_for('index') }}">🌍 Ecologic</a>
+            </div>
+            <nav class="nav-menu">
+                <a href="{{ url_for('index') }}">Início</a>
+                <a href="{{ url_for('sensores_page') }}">Sensores</a>
+                <a href="{{ url_for('sobre') }}">Sobre</a>
+                <a href="{{ url_for('contato') }}">Contato</a>
+            </nav>
+            <div class="menu-toggle" id="mobile-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
     </header>
 
     <main>
@@ -25,5 +36,15 @@
     <footer>
         <p>© 2025 Ecologic. Todos os direitos reservados.</p>
     </footer>
+
+    <script>
+        // Menu mobile
+        const mobileMenu = document.getElementById('mobile-menu');
+        const navMenu = document.querySelector('.nav-menu');
+
+        mobileMenu.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+    </script>
 </body>
 </html>
