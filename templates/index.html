@@ -1,25 +1,24 @@
-<!DOCTYPE html>
-<html lang="pt">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ecologic - Monitoramento Inteligente</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+{% extends "base.html" %}
 
-</head>
-<body>
-    <header>
-        <h1>🌍 Ecologic - Monitoramento Inteligente</h1>
-        <nav>
-            <a href="{{ url_for('index') }}">Início</a>
-            <a href="{{ url_for('sensores_page') }}">Sensores</a>
-            <a href="{{ url_for('sobre') }}">Sobre</a>
-            <a href="{{ url_for('contato') }}">Contato</a>
-        </nav>
-    </header>
+{% block title %}Ecologic - Monitoramento Inteligente{% endblock %}
 
+{% block content %}
     <section class="hero">
+        <div class="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="{{ url_for('static', filename='imagens/joabe.JPG') }}" alt="Imagem 1">
+                </div>
+                <div class="carousel-item">
+                    <img src="{{ url_for('static', filename='images/joabe.JPG') }}" alt="Imagem 2">
+                </div>
+                <div class="carousel-item">
+                    <img src="{{ url_for('static', filename='images/joabe.JPG') }}" alt="Imagem 3">
+                </div>
+            </div>
+            <button class="carousel-control prev" onclick="moveSlide(-1)">&#10094;</button>
+            <button class="carousel-control next" onclick="moveSlide(1)">&#10095;</button>
+        </div>
         <h2>Monitoramento em Tempo Real 🌡️🔋💡</h2>
         <p>Obtenha dados precisos de temperatura, luminosidade e corrente elétrica para otimizar seu ambiente.</p>
         <a href="{{ url_for('sensores_page') }}" class="btn">Ver Sensores</a>
@@ -43,8 +42,24 @@
         </div>
     </section>
 
-    <footer>
-        <p>© 2025 Ecologic. Todos os direitos reservados.</p>
-    </footer>
-</body>
-</html>
+    <script>
+        let currentSlide = 0;
+
+        function showSlide(index) {
+            const slides = document.querySelectorAll('.carousel-item');
+            if (index >= slides.length) currentSlide = 0;
+            if (index < 0) currentSlide = slides.length - 1;
+            slides.forEach((slide, i) => {
+                slide.classList.toggle('active', i === currentSlide);
+            });
+        }
+
+        function moveSlide(step) {
+            currentSlide += step;
+            showSlide(currentSlide);
+        }
+
+        // Iniciar o carrossel
+        showSlide(currentSlide);
+    </script>
+{% endblock %}
