@@ -512,6 +512,145 @@ body.contato .btn {
 body.contato .btn:hover {
     background-color: #45a049;
 }
+/* Estilos específicos para a página login.html */
+body.login .auth-container {
+    max-width: 400px;
+    margin: 6rem auto 2rem;
+    padding: 2rem;
+    background-color: #e8f5e9;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+body.login .auth-container h2 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    color: #2E7D32;
+}
+
+body.login .form-group {
+    margin-bottom: 1.5rem;
+    text-align: left;
+}
+
+body.login .form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: #333;
+}
+
+body.login .form-group input {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+body.login .btn {
+    width: 100%;
+    padding: 0.8rem;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+body.login .btn:hover {
+    background-color: #45a049;
+}
+
+body.login .auth-container p {
+    margin-top: 1.5rem;
+    font-size: 1rem;
+    color: #666;
+}
+
+body.login .auth-container a {
+    color: #2E7D32;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+body.login .auth-container a:hover {
+    text-decoration: underline;
+}
+
+/* Estilos específicos para a página register.html */
+body.register .auth-container {
+    max-width: 400px;
+    margin: 6rem auto 2rem;
+    padding: 2rem;
+    background-color: #e8f5e9;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+body.register .auth-container h2 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    color: #2E7D32;
+}
+
+body.register .form-group {
+    margin-bottom: 1.5rem;
+    text-align: left;
+}
+
+body.register .form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: #333;
+}
+
+body.register .form-group input {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+body.register .btn {
+    width: 100%;
+    padding: 0.8rem;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+body.register .btn:hover {
+    background-color: #45a049;
+}
+
+body.register .auth-container p {
+    margin-top: 1.5rem;
+    font-size: 1rem;
+    color: #666;
+}
+
+body.register .auth-container a {
+    color: #2E7D32;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+body.register .auth-container a:hover {
+    text-decoration: underline;
+}
 
 /* Carrossel */
 .carousel {
@@ -594,4 +733,17 @@ body.contato .btn:hover {
 
 .carousel-indicators .indicator.active {
     background-color: rgba(255, 255, 255, 1);
+}
+
+.dark-mode {
+    background-color: #121212;
+    color: #ffffff;
+}
+
+.dark-mode .navbar {
+    background-color: #1e1e1e;
+}
+
+.dark-mode a {
+    color: #ffffff;
 }

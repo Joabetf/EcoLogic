@@ -1,0 +1,138 @@
+{% extends "base.html" %}
+
+{% block title %}Gerenciar Usuários - Admin{% endblock %}
+
+{% block content %}
+<style>
+    .admin-page {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: calc(100vh - 120px);
+        padding: 2rem;
+        background-color: #f4f4f4;
+    }
+
+    .admin-container {
+        max-width: 900px;
+        width: 100%;
+        padding: 2rem;
+        background-color: white;
+        border-radius: 15px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        text-align: center;
+    }
+
+    h2 {
+        color: #2E7D32;
+        margin-bottom: 1.5rem;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 1rem;
+    }
+
+    th, td {
+        padding: 12px;
+        border-bottom: 1px solid #ddd;
+        text-align: center;
+    }
+
+    th {
+        background-color: #4CAF50;
+        color: white;
+    }
+
+    .btn {
+        padding: 8px 12px;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+        font-size: 0.9rem;
+        display: inline-block;
+        margin: 3px;
+        cursor: pointer;
+        border: none;
+    }
+
+    .btn-delete {
+        background-color: red;
+    }
+
+    .btn-delete:hover {
+        background-color: darkred;
+    }
+
+    .btn-promote {
+        background-color: #2196F3;
+    }
+
+    .btn-promote:hover {
+        background-color: #0b7dda;
+    }
+
+    .btn-demote {
+        background-color: orange;
+    }
+
+    .btn-demote:hover {
+        background-color: darkorange;
+    }
+
+    .btn-back {
+        background-color: #4CAF50;
+    }
+
+    .btn-back:hover {
+        background-color: #388E3C;
+    }
+</style>
+
+<div class="admin-page">
+    <div class="admin-container">
+        <h2>Gerenciar Usuários</h2>
+        
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Email</th>
+                <th>Tipo</th>
+                <th>Ações</th>
+            </tr>
+            {% for usuario in usuarios %}
+            <tr>
+                <td>{{ usuario['id'] }}</td>
+                <td>{{ usuario['username'] }}</td>
+                <td>{{ usuario['email'] }}</td>
+                <td>{{ usuario['tipo'] }}</td>
+                <td>
+                    {% if usuario['id'] != session['user_id'] %}
+                        <form action="{{ url_for('deletar_usuario', user_id=usuario['id']) }}" method="POST" style="display:inline;">
+                            <button type="submit" class="btn btn-delete">Excluir</button>
+                        </form>
+
+                        {% if usuario['tipo'] == 'usuario' %}
+                            <form action="{{ url_for('promover_usuario', user_id=usuario['id']) }}" method="POST" style="display:inline;">
+                                <button type="submit" class="btn btn-promote">Tornar Admin</button>
+                            </form>
+                        {% else %}
+                            <form action="{{ url_for('demover_usuario', user_id=usuario['id']) }}" method="POST" style="display:inline;">
+                                <button type="submit" class="btn btn-demote">Remover Admin</button>
+                            </form>
+                        {% endif %}
+                    {% else %}
+                        <span>🛑 (Você)</span>
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+
+        <a href="{{ url_for('admin_dashboard') }}" class="btn btn-back">🔙 Voltar ao Painel</a>
+    </div>
+</div>
+
+{% endblock %}

@@ -4,6 +4,31 @@
 
 {% block content %}
     <body class="sensores">
+        <style>
+            .dashboard-container {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: 20px;
+                flex-wrap: wrap;
+                margin: 20px auto;
+                max-width: 1200px;
+                padding: 20px;
+                text-align: center;
+            }
+            
+            .chart-container {
+                flex: 1;
+                min-width: 300px;
+                max-width: 400px;
+                height: 300px;
+            }
+
+            .dashboard-title {
+                text-align: center;
+            }
+        </style>
+
         <section class="sensors">
             <h1>Monitoramento de Sensores</h1>
             <div class="sensor-grid">
@@ -22,13 +47,22 @@
             </div>
         </section>
 
+        <section>
+            <h2 class="dashboard-title">📊 Monitoramento de Sensores</h2>
+            <div class="dashboard-container">
+                <canvas id="luminosidadeChart" class="chart-container"></canvas>
+                <canvas id="temperaturaChart" class="chart-container"></canvas>
+                <canvas id="correnteChart" class="chart-container"></canvas>
+            </div>
+        </section>
+
         <section class="devices">
             <h2>Dispositivos IR</h2>
             <div class="device-grid">
                 {% for dispositivo in dispositivos_ir %}
                     <div class="device-card">
                         <h3>{{ dispositivo['nome'] }} ({{ dispositivo['tipo'] }})</h3>
-                        <button class="btn-toggle" onclick="alterarEstado({{ dispositivo['id'] }}, '{{ dispositivo['estado'] }}')">
+                        <button id="estado-{{ dispositivo['id'] }}" class="btn-toggle" onclick="alterarEstado({{ dispositivo['id'] }}, '{{ dispositivo['estado'] }}')">
                             {{ dispositivo['estado'] }}
                         </button>
                         {% if dispositivo['tipo'] == 'ar_condicionado' %}
@@ -43,6 +77,17 @@
         </section>
 
         <script>
+            function atualizarSensores() {
+                fetch("/api/sensores")
+                    .then(response => response.json())
+                    .then(dados => {
+                        document.getElementById("luminosidade").textContent = dados.luminosidade;
+                        document.getElementById("temperatura").textContent = dados.temperatura;
+                        document.getElementById("corrente").textContent = dados.corrente;
+                    })
+                    .catch(error => console.error("Erro ao buscar dados dos sensores:", error));
+            }
+            
             function alterarEstado(id, estadoAtual) {
                 let novoEstado = estadoAtual === "ligado" ? "desligado" : "ligado";
                 fetch("/atualizar_estado", {
@@ -51,9 +96,14 @@
                     body: JSON.stringify({ id: id, estado: novoEstado })
                 })
                 .then(response => response.json())
-                .then(data => location.reload());
+                .then(data => {
+                    if (data.success) {
+                        document.getElementById(`estado-${id}`).textContent = data.estado;
+                    }
+                })
+                .catch(error => console.error("Erro ao atualizar estado:", error));
             }
-
+        
             function alterarTemperatura(id) {
                 let novaTemp = document.getElementById(`temp-${id}`).value;
                 fetch("/atualizar_temperatura", {
@@ -64,6 +114,51 @@
                 .then(response => response.json())
                 .then(data => location.reload());
             }
+            
+            setInterval(atualizarSensores, 3000);
+            atualizarSensores();
+        </script>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                function atualizarGraficos() {
+                    fetch("/api/sensores")
+                        .then(response => response.json())
+                        .then(dados => {
+                            let agora = new Date().toLocaleTimeString();
+                            atualizarGrafico(luminosidadeChart, dados.luminosidade, agora);
+                            atualizarGrafico(temperaturaChart, dados.temperatura, agora);
+                            atualizarGrafico(correnteChart, dados.corrente, agora);
+                        });
+                }
+                
+                function atualizarGrafico(chart, novoValor, label) {
+                    if (chart.data.labels.length > 10) {
+                        chart.data.labels.shift();
+                        chart.data.datasets[0].data.shift();
+                    }
+                    chart.data.labels.push(label);
+                    chart.data.datasets[0].data.push(novoValor);
+                    chart.update();
+                }
+
+                const luminosidadeChart = new Chart(document.getElementById("luminosidadeChart").getContext("2d"), {
+                    type: "line",
+                    data: { labels: [], datasets: [{ label: "Luminosidade", data: [], borderColor: "orange", fill: false }] },
+                });
+
+                const temperaturaChart = new Chart(document.getElementById("temperaturaChart").getContext("2d"), {
+                    type: "line",
+                    data: { labels: [], datasets: [{ label: "Temperatura", data: [], borderColor: "red", fill: false }] },
+                });
+
+                const correnteChart = new Chart(document.getElementById("correnteChart").getContext("2d"), {
+                    type: "line",
+                    data: { labels: [], datasets: [{ label: "Corrente", data: [], borderColor: "blue", fill: false }] },
+                });
+
+                setInterval(atualizarGraficos, 3000);
+            });
         </script>
     </body>
 {% endblock %}

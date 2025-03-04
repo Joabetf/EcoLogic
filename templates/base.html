@@ -20,7 +20,25 @@
                 <a href="{{ url_for('sensores_page') }}">Sensores</a>
                 <a href="{{ url_for('sobre') }}">Sobre</a>
                 <a href="{{ url_for('contato') }}">Contato</a>
+                {% if session['user_id'] %}
+                <div class="dropdown">
+                    <a href="#" class="dropbtn">
+                        <img src="{{ session.get('avatar', url_for('static', filename='default-avatar.png')) }}" class="avatar">
+                        {{ session['username'] }}
+                    </a>
+                    <div class="dropdown-content">
+                        {% if session['tipo'] == 'admin' %}
+                            <a href="{{ url_for('admin_dashboard') }}">Admin</a>
+                        {% endif %}
+                        <a href="{{ url_for('profile') }}">Ver Perfil</a>
+                        <a href="{{ url_for('logout') }}">Sair</a>
+                    </div>
+                </div>
+                {% else %}
+                <a href="{{ url_for('login') }}">Login</a>
+                {% endif %}           
             </nav>
+            <button id="toggle-dark-mode" class="dark-mode-btn">🌙</button>
             <div class="menu-toggle" id="mobile-menu">
                 <span class="bar"></span>
                 <span class="bar"></span>
@@ -28,23 +46,96 @@
             </div>
         </div>
     </header>
-
     <main>
         {% block content %}{% endblock %}
     </main>
-
-    <footer>
+    <footer class="footer">
         <p>© 2025 Ecologic. Todos os direitos reservados.</p>
     </footer>
-
     <script>
-        // Menu mobile
-        const mobileMenu = document.getElementById('mobile-menu');
-        const navMenu = document.querySelector('.nav-menu');
+        document.getElementById('mobile-menu').addEventListener('click', () => {
+            document.querySelector('.nav-menu').classList.toggle('active');
+        });
+        document.addEventListener("DOMContentLoaded", function () {
+            const darkModeToggle = document.getElementById("toggle-dark-mode");
+            const body = document.body;
+            const footer = document.querySelector(".footer");
 
-        mobileMenu.addEventListener('click', () => {
-            navMenu.classList.toggle('active');
+            if (localStorage.getItem("dark-mode") === "enabled") {
+                body.classList.add("dark-mode");
+                footer.classList.add("dark-mode-footer");
+                darkModeToggle.textContent = "☀️";
+            }
+
+            darkModeToggle.addEventListener("click", function () {
+                body.classList.toggle("dark-mode");
+                footer.classList.toggle("dark-mode-footer");
+                if (body.classList.contains("dark-mode")) {
+                    localStorage.setItem("dark-mode", "enabled");
+                    darkModeToggle.textContent = "☀️";
+                } else {
+                    localStorage.setItem("dark-mode", "disabled");
+                    darkModeToggle.textContent = "🌙";
+                }
+            });
         });
     </script>
+    <style>
+        /* Ajuste do espaçamento para remover a faixa acima do footer */
+        main {
+            min-height: calc(100vh - 120px);
+            padding-bottom: 0;
+        }
+
+        /* Footer padrão no modo claro */
+        .footer {
+            background-color: #2E7D32;
+            color: white;
+            text-align: center;
+            padding: 15px 0;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+
+        /* Footer no modo escuro */
+        .dark-mode-footer {
+            background-color: black !important;
+        }
+
+        /* Melhorando o dropdown para centralizar as opções */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: white;
+            min-width: 150px;
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+            border-radius: 5px;
+            z-index: 10;
+        }
+
+        .dropdown-content a {
+            color: black;
+            padding: 10px;
+            display: block;
+            text-decoration: none;
+            text-align: center;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #f1f1f1;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+    </style>
 </body>
 </html>

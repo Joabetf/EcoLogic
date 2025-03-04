@@ -1,0 +1,122 @@
+{% extends "base.html" %}
+
+{% block title %}Admin - Ecologic{% endblock %}
+
+{% block content %}
+<style>
+    .admin-page {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: calc(100vh - 120px);
+        padding: 2rem;
+        background-color: #f4f4f4;
+    }
+
+    .admin-container {
+        max-width: 800px;
+        width: 100%;
+        padding: 2rem;
+        background-color: white;
+        border-radius: 15px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        text-align: center;
+    }
+
+    .stats {
+        display: flex;
+        justify-content: space-around;
+        margin-bottom: 1.5rem;
+    }
+
+    .stat-box {
+        background: #2E7D32;
+        color: white;
+        padding: 1rem;
+        border-radius: 10px;
+        font-size: 1.2rem;
+        font-weight: bold;
+        width: 45%;
+    }
+
+    .sensor-list {
+        margin-top: 2rem;
+        text-align: left;
+    }
+
+    .sensor-list table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    .sensor-list th, .sensor-list td {
+        padding: 10px;
+        border-bottom: 1px solid #ddd;
+        text-align: center;
+    }
+
+    .sensor-list th {
+        background-color: #4CAF50;
+        color: white;
+    }
+
+    .admin-actions {
+        margin-top: 2rem;
+    }
+
+    .btn {
+        padding: 10px 15px;
+        background-color: #4CAF50;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+        font-weight: bold;
+        display: inline-block;
+        margin-top: 1rem;
+    }
+
+    .btn:hover {
+        background-color: #388E3C;
+    }
+</style>
+
+<div class="admin-page">
+    <div class="admin-container">
+        <h2>Bem-vindo, {{ username }}!</h2>
+        
+        <div class="stats">
+            <div class="stat-box">
+                👥 Usuários: {{ total_usuarios }}
+            </div>
+            <div class="stat-box">
+                🔌 Dispositivos: {{ total_dispositivos }}
+            </div>
+        </div>
+
+        <div class="sensor-list">
+            <h3>📊 Últimos Sensores Registrados</h3>
+            <table>
+                <tr>
+                    <th>Luminosidade</th>
+                    <th>Temperatura</th>
+                    <th>Corrente</th>
+                </tr>
+                {% for sensor in ultimos_sensores %}
+                <tr>
+                    <td>{{ sensor['luminosidade'] }}</td>
+                    <td>{{ sensor['temperatura'] }}°C</td>
+                    <td>{{ sensor['corrente'] }}A</td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+
+        <div class="admin-actions">
+            <a href="{{ url_for('profile') }}" class="btn">👤 Ver Perfil</a>
+            <a href="{{ url_for('logout') }}" class="btn">🚪 Sair</a>
+            <a href="{{ url_for('admin_usuarios') }}" class="btn">👥 Gerenciar Usuários</a>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
